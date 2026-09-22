@@ -1,0 +1,632 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================
+           HEADER
+        ========================= */
+
+.header {
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: 300;
+    color: #111;
+    letter-spacing: -3px;
+}
+
+.logo span {
+    color: #eb540a;
+}
+
+.logo-small {
+    display: block;
+    font-size: 13px;
+    color: #111;
+    letter-spacing: 0;
+    text-align: right;
+    margin-top: -5px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.nav a {
+    color: #eb540a;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.nav-separator {
+    color: #999;
+}
+
+/* =========================
+           MAIN
+        ========================= */
+
+.container {
+    max-width: 930px;
+    margin: 70px auto 0;
+    padding: 0 15px;
+}
+
+/* =========================
+           TABS
+        ========================= */
+
+.tabs {
+    display: flex;
+    align-items: flex-end;
+}
+
+.tab {
+    padding: 14px 16px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #eb540a;
+}
+
+.tab.active {
+    color: #444;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    background: #fff;
+}
+
+/* =========================
+           FORM
+        ========================= */
+
+.tester-box {
+    border-top: 1px solid #ddd;
+    padding-top: 0;
+}
+
+.url-input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    padding: 0 11px;
+    font-size: 17px;
+    color: #555;
+    outline: none;
+}
+
+.url-input:focus {
+    border-color: #eb540a;
+    box-shadow: 0 0 0 2px rgba(155, 69, 201, 0.08);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 208px;
+    gap: 5px;
+    margin-top: 16px;
+}
+
+.select {
+    width: 100%;
+    height: 41px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    background: white;
+    padding: 0 10px;
+    color: #557080;
+    font-size: 16px;
+    outline: none;
+}
+
+.submit-btn {
+    height: 41px;
+    border: 0;
+    border-radius: 5px;
+    background: #eb540a;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #eb540a;
+}
+
+.submit-btn:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+}
+
+/* =========================
+           ADVANCED
+        ========================= */
+
+.advanced {
+    margin-top: 23px;
+}
+
+.advanced-button {
+    border: 0;
+    background: transparent;
+    color: #698092;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.advanced-button::before {
+    content: "↳ ";
+}
+
+.advanced-content {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+.advanced-content.show {
+    display: block;
+}
+
+.advanced-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.advanced-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.advanced-input {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 9px;
+}
+
+/* =========================
+           RESULT OPTIONS
+        ========================= */
+
+.result-options {
+    margin-top: -15px;
+    text-align: right;
+    font-size: 12px;
+    color: #71818d;
+}
+
+.result-options label {
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+/* =========================
+           LOADING
+        ========================= */
+
+.loading {
+    display: none;
+    margin-top: 35px;
+    text-align: center;
+    color: #eb540a;
+    font-size: 15px;
+}
+
+.spinner {
+    width: 25px;
+    height: 25px;
+    border: 3px solid #eee;
+    border-top-color: #eb540a;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+           RESULT
+        ========================= */
+
+#result {
+    display: none;
+    margin-top: 45px;
+}
+
+.result-title {
+    color: white;
+    font-size: 21px;
+    font-weight: 300;
+    margin-bottom: 25px;
+    background: #10a910;
+    padding: 10px;
+}
+
+.result-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+}
+
+.summary-label {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.summary-value {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.redirect-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.redirect-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 16px;
+    background: white;
+}
+
+.redirect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.redirect-number {
+    color: #eb540a;
+    font-weight: bold;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #eee;
+}
+
+.status-2xx {
+    background: #e5f7e8;
+    color: #237a30;
+}
+
+.status-3xx {
+    background: #fff2d8;
+    color: #9a6500;
+}
+
+.status-4xx,
+.status-5xx {
+    background: #ffe4e4;
+    color: #b52a2a;
+}
+
+.url-line {
+    font-size: 13px;
+    word-break: break-all;
+    margin: 7px 0;
+}
+
+.url-line strong {
+    color: #555;
+}
+
+.duration {
+    color: #888;
+    font-size: 12px;
+}
+
+.final-card {
+    margin-top: 15px;
+    border: 2px solid #eb540a;
+    border-radius: 5px;
+    padding: 18px;
+}
+
+.final-title {
+    color: #eb540a;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.error-box {
+    display: none;
+    margin-top: 30px;
+    padding: 14px;
+    border: 1px solid #e3a3a3;
+    border-radius: 5px;
+    background: #fff2f2;
+    color: #a32929;
+}
+
+/* =========================
+           TRUSTED NETWORKS
+        ========================= */
+
+.trusted {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.trusted-title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 25px;
+    color: #71818d;
+    font-size: 16px;
+}
+
+.network-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    flex-wrap: wrap;
+    vertical-align: middle;
+}
+
+.network {
+    font-weight: bold;
+    color: #555;
+    font-size: 22px;
+    opacity: .65;
+}
+
+/* =========================
+           TESTIMONIAL HEADING
+        ========================= */
+
+.testimonial-title {
+    margin-top: 125px;
+    text-align: center;
+    color: #4c1384;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1.7;
+}
+
+/* =========================
+           MOBILE
+        ========================= */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        height: auto;
+        padding: 20px 15px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 40px;
+    }
+
+    .container {
+        margin-top: 35px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .result-options {
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    .advanced-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .trusted-title {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-title {
+        margin-top: 70px;
+        font-size: 24px;
+    }
+
+
+
+    .redirect-number {
+        color: #eb540a;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .redirect-icon {
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #f3e7f8;
+        color: #eb540a;
+        font-size: 17px;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+
+    /* =========================
+   FINAL DESTINATION
+========================= */
+
+    .final-endpoint {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .endpoint-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #e5f7e8;
+        color: #237a30;
+
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .endpoint-content {
+        flex: 1;
+    }
+
+    .endpoint-label {
+        color: #eb540a;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .endpoint-url {
+        color: #444;
+        font-size: 14px;
+        line-height: 1.6;
+        word-break: break-all;
+    }
+
+    .endpoint-status {
+        margin-top: 10px;
+        color: #777;
+        font-size: 13px;
+    }
+
+    /* =========================
+   CLICKABLE REDIRECT URL
+========================= */
+
+    .url-link {
+        color: #7d32a8;
+        text-decoration: none;
+        word-break: break-all;
+    }
+
+    .url-link:hover {
+        color: #eb540a;
+        text-decoration: underline;
+    }
+
+
+    /* =========================
+   REDIRECT NUMBER
+========================= */
+
+    .redirect-number {
+        color: #eb540a;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+
+    /* =========================
+   REDIRECT CARD
+========================= */
+
+    .redirect-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 16px;
+        background: white;
+        transition: .2s;
+    }
+
+    .redirect-card:hover {
+        border-color: #c58add;
+    }
+
+
+    /* =========================
+   FINAL DESTINATION
+========================= */
+
+    .endpoint-status {
+        margin-top: 10px;
+        color: #777;
+        font-size: 13px;
+    }
+
+
+
+
+
+}
