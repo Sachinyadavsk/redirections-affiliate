@@ -40,7 +40,7 @@ a {
 }
 
 .logo span {
-    color: #eb540a;
+    color: #126296;
 }
 
 .logo-small {
@@ -59,7 +59,7 @@ a {
 }
 
 .nav a {
-    color: #eb540a;
+    color: #126296;
     font-size: 17px;
     font-weight: 600;
 }
@@ -94,7 +94,7 @@ a {
     font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    color: #eb540a;
+    color: #126296;
 }
 
 .tab.active {
@@ -126,7 +126,7 @@ a {
 }
 
 .url-input:focus {
-    border-color: #eb540a;
+    border-color: #126296;
     box-shadow: 0 0 0 2px rgba(155, 69, 201, 0.08);
 }
 
@@ -153,7 +153,7 @@ a {
     height: 41px;
     border: 0;
     border-radius: 5px;
-    background: #eb540a;
+    background: #126296;
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -162,7 +162,7 @@ a {
 }
 
 .submit-btn:hover {
-    background: #eb540a;
+    background: #126296;
 }
 
 .submit-btn:disabled {
@@ -249,7 +249,7 @@ a {
     display: none;
     margin-top: 35px;
     text-align: center;
-    color: #eb540a;
+    color: #126296;
     font-size: 15px;
 }
 
@@ -257,7 +257,7 @@ a {
     width: 25px;
     height: 25px;
     border: 3px solid #eee;
-    border-top-color: #eb540a;
+    border-top-color: #126296;
     border-radius: 50%;
     margin: 0 auto 10px;
     animation: spin .8s linear infinite;
@@ -534,7 +534,7 @@ a {
 }
 
 .redirect-number {
-    color: #eb540a;
+    color: #126296;
     font-weight: bold;
 }
 
@@ -580,13 +580,13 @@ a {
 
 .final-card {
     margin-top: 15px;
-    border: 2px solid #eb540a;
+    border: 2px solid #126296;
     border-radius: 5px;
     padding: 18px;
 }
 
 .final-title {
-    color: #eb540a;
+    color: #126296;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -698,7 +698,7 @@ a {
 
 
     .redirect-number {
-        color: #eb540a;
+        color: #126296;
         font-weight: bold;
         display: flex;
         align-items: center;
@@ -713,7 +713,7 @@ a {
         justify-content: center;
         border-radius: 50%;
         background: #f3e7f8;
-        color: #eb540a;
+        color: #126296;
         font-size: 17px;
         font-weight: bold;
         flex-shrink: 0;
@@ -753,7 +753,7 @@ a {
     }
 
     .endpoint-label {
-        color: #eb540a;
+        color: #126296;
         font-size: 14px;
         font-weight: bold;
         margin-bottom: 8px;
@@ -783,7 +783,7 @@ a {
     }
 
     .url-link:hover {
-        color: #eb540a;
+        color: #126296;
         text-decoration: underline;
     }
 
@@ -793,7 +793,7 @@ a {
 ========================= */
 
     .redirect-number {
-        color: #eb540a;
+        color: #126296;
         font-weight: bold;
         font-size: 15px;
     }

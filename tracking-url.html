@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AffiliTracker - Affiliate Link Tester</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="layoutstyle.css">
 </head>
 
 <body>
@@ -14,27 +14,35 @@
     <header class="header">
         <div class="header-inner">
             <div>
-                <div class="logo">Zet<span>ta</span>Test</div>
-                <span class="logo-small">by Your Brand</span>
+                <a href="https://redirections-affiliate.vercel.app">
+                    <div class="logo">Sma<span>rt</span>Test</div>
+                    <span class="logo-small">by Your Brand</span>
+                </a>
             </div>
+            <nav class="top-menu">
+                <a href="https://redirections-affiliate.vercel.app" style="color:#126296;font-weight: 700;">VPN
+                    Tracking URL</a>
+                <span class="separator">|</span>
+                <a href="tracking-url.html" style="color:#126296;font-weight: 700;">Tracking URl</a>
+                <span class="separator">|</span>
+                <a href="about-us.html" style="color:#126296;font-weight: 700;">About</a>
+            </nav>
         </div>
     </header>
 
     <!-- MAIN -->
     <main class="container">
-        <!-- Tabs -->
+        <!-- TABS -->
         <div class="tabs">
             <div class="tab active" id="trackingTab" onclick="switchTab('tracking')">
                 Tracking Link
             </div>
         </div>
 
-        <!-- Tester -->
+        <!-- TESTER -->
         <div class="tester-box">
-            <!-- Tracking URL -->
             <input type="url" name="mainInput" id="trackingUrl" class="url-input"
                 placeholder="Enter your affiliate/tracking link" autocomplete="off" required>
-
             <div class="form-row">
                 <select id="device" name="device" class="select" required>
                     <option value="">Select Device</option>
@@ -57,14 +65,12 @@
                     <option value="au">Australia</option>
                     <option value="de">Germany</option>
                 </select>
-
                 <button type="button" class="submit-btn" id="submitBtn" onclick="runTest()">
                     SUBMIT
                 </button>
-
             </div>
 
-            <!-- Advanced -->
+            <!-- ADVANCED -->
             <div class="advanced">
                 <button type="button" class="advanced-button" onclick="toggleAdvanced()">Advanced</button>
                 <div class="advanced-content" id="advancedContent">
@@ -113,7 +119,7 @@
                         <div>
                             <label class="advanced-label">Connection</label>
                             <select id="advancedNetType" name="netType" class="select">
-                                <option value="wifi"> Wifi Connection</option>
+                                <option value="wifi">Wifi Connection</option>
                                 <option value="3g">3G/4G Connection</option>
                             </select>
                         </div>
@@ -127,25 +133,22 @@
                 </div>
             </div>
 
-            <!-- Result type -->
+            <!-- RESULT TYPE -->
             <div class="result-options">
                 Show result as:
                 <label>
-                    <input type="radio" name="resultType" value="redirect" checked>Redirections
+                    <input type="radio" name="resultType" value="redirect" checked>
+                    Redirections
                 </label>
             </div>
         </div>
 
-        <!-- Loading -->
+        <!-- LOADING -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
             Checking redirect chain...
         </div>
-
-        <!-- Error -->
         <div class="error-box" id="errorBox"></div>
-
-        <!-- Result -->
         <section id="result">
             <div class="result-title">Redirect Results</div>
             <div class="redirect-list" id="redirectList"></div>
@@ -153,7 +156,6 @@
     </main>
 
     <script>
-
         let currentTab = "tracking";
         function switchTab(tab) {
             currentTab = tab;
@@ -171,13 +173,12 @@
             }
         }
 
-        // ADVANCED TOGGLE
+        // ADVANCED
         function toggleAdvanced() {
-            const box = document.getElementById("advancedContent");
-            box.classList.toggle("show");
+            document.getElementById("advancedContent").classList.toggle("show");
         }
 
-        // COUNTRY -> CITY DATA
+        //  CITY DATA
         const cityData = {
             us: ["New York", "Los Angeles", "Chicago", "Houston", "Miami", "San Francisco", "Dallas"],
             in: ["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad"],
@@ -199,10 +200,10 @@
 
         // COUNTRY CHANGE
         document.getElementById("country").addEventListener("change", function () {
-            const country = this.value;
-            updateCities(country);
-            updateCarriers(country);
-        });
+            updateCities(this.value);
+            updateCarriers(this.value);
+        }
+        );
 
         // UPDATE CITY
         function updateCities(country) {
@@ -224,7 +225,7 @@
             });
         }
 
-        // UPDATE CARRIERS
+        //  UPDATE CARRIER
         function updateCarriers(country) {
             const carrierSelect = document.getElementById("advancedASN");
             carrierSelect.innerHTML = "";
@@ -244,14 +245,10 @@
                 carrierSelect.appendChild(option);
             });
 
-            if (document.getElementById("advancedNetType").value === "3g") {
-                carrierSelect.disabled = false;
-            } else {
-                carrierSelect.disabled = true;
-            }
+            carrierSelect.disabled = document.getElementById("advancedNetType").value !== "3g";
         }
 
-        // CONNECTION CHANGE
+        // CONNECTION
         document.getElementById("advancedNetType").addEventListener("change", function () {
             const carrier = document.getElementById("advancedASN");
             if (this.value === "3g") {
@@ -261,9 +258,10 @@
                 carrier.disabled = true;
                 carrier.value = "";
             }
-        });
+        }
+        );
 
-
+        // URL VALIDATION
         function isValidUrl(value) {
             try {
                 const url = new URL(value);
@@ -273,7 +271,7 @@
             }
         }
 
-
+        //  ESCAPE HTML
         function escapeHtml(value) {
             if (value === null || value === undefined) {
                 return "";
@@ -287,23 +285,20 @@
                 .replace(/'/g, "&#039;");
         }
 
-        //  SAFE CLICKABLE URL
+        //  SAFE URL LINK
         function makeUrlLink(url) {
             if (!url || url === "-") {
                 return "-";
             }
+
             return `
-                <a href="${escapeHtml(url)}" target="_blank"
-                    rel="noopener noreferrer"
-                    class="url-link"
-                >
+                <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"class="url-link">
                     ${escapeHtml(url)}
                 </a>
             `;
         }
 
-
-        //  STATUS CLASS
+        // STATUS CLASS
         function statusClass(status) {
             status = Number(status);
             if (status >= 200 && status < 300) {
@@ -324,7 +319,8 @@
             return "";
         }
 
-        //  STATUS TEXT
+
+        // STATUS TEXT
         function getStatusText(status) {
             status = Number(status);
             if (status >= 200 && status < 300) {
@@ -345,31 +341,22 @@
             return "Unknown";
         }
 
-        //    GET FORM DATA
-        function getFormData() {
-            const url = document.getElementById("trackingUrl").value.trim();
-            const device = document.getElementById("device").value;
-            const country = document.getElementById("country").value;
-            const advancedDevice = document.getElementById("advancedDev").value;
-            const city = document.getElementById("advancedCity").value;
-            const connection = document.getElementById("advancedNetType").value;
-            const carrier = document.getElementById("advancedASN").value;
-            const resultType = document.querySelector('input[name="resultType"]:checked')?.value || "redirect";
 
+        // GET FORM DATA
+        function getFormData() {
             return {
-                mainInput: url,
-                device: device,
-                country: country,
-                advancedDevice: advancedDevice,
-                city: city,
-                connection: connection,
-                carrier: carrier,
-                resultType: resultType
+                mainInput: document.getElementById("trackingUrl").value.trim(),
+                device: document.getElementById("device").value,
+                country: document.getElementById("country").value,
+                advancedDevice: document.getElementById("advancedDev").value,
+                city: document.getElementById("advancedCity").value,
+                connection: document.getElementById("advancedNetType").value,
+                carrier: document.getElementById("advancedASN").value,
+                resultType: document.querySelector('input[name="resultType"]:checked')?.value || "redirect"
             };
         }
 
-
-        //   VALIDATE FORM
+        // VALIDATE
         function validateForm(formData) {
             if (!formData.mainInput) {
                 showError("Tracking URL is required.");
@@ -379,44 +366,79 @@
 
             if (currentTab === "tracking" && !isValidUrl(formData.mainInput)) {
                 showError("Please enter a valid HTTP or HTTPS URL.");
-                document.getElementById("trackingUrl").focus();
                 return false;
             }
 
             if (!formData.device) {
                 showError("Please select a device.");
-                document.getElementById("device").focus();
                 return false;
             }
 
             if (!formData.country) {
                 showError("Please select a country.");
-                document.getElementById("country").focus();
                 return false;
             }
 
             if (formData.connection === "3g" && !formData.carrier) {
                 showError("Please select a carrier for the 3G/4G connection.");
-                document.getElementById("advancedASN").focus();
                 return false;
             }
-
             return true;
         }
 
-        //   SHOW ERROR
+        // ERROR
         function showError(message) {
             const errorBox = document.getElementById("errorBox");
-            errorBox.innerHTML = escapeHtml(message);
+            errorBox.textContent = message;
             errorBox.style.display = "block";
             errorBox.scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
-        // CLEAR ERROR
         function clearError() {
             const errorBox = document.getElementById("errorBox");
             errorBox.style.display = "none";
-            errorBox.innerHTML = "";
+            errorBox.textContent = "";
+        }
+
+        //  DISPLAY REDIRECT LOOP
+        function displayRedirectLoop(data, requestData) {
+            const result = document.getElementById("result");
+            const list = document.getElementById("redirectList");
+            const redirects = Array.isArray(data.redirects)
+                ? data.redirects
+                : [];
+
+            list.innerHTML = "";
+
+            let html = `<div class="loop-chain">`;
+            const startUrl = data.url || requestData.mainInput || "";
+            if (startUrl) {
+                html += `<div class="loop-url">${makeUrlLink(startUrl)}</div>`;
+            }
+
+            // REDIRECTS
+            if (redirects.length > 0) {
+                redirects.forEach((redirect, index) => {
+                    const to = redirect.to || redirect.location || "-";
+                    html += `<div class="loop-url">${makeUrlLink(to)}</div>`;
+                }
+                );
+
+            } else {
+
+                html += `
+                    <div class="loop-item">
+                        <div class="loop-item-top">
+                            <span class="loop-number">1</span>
+                            <strong>No redirect records returned</strong>
+                        </div>
+                    </div>
+                `;
+            }
+
+            list.innerHTML = html;
+            result.style.display = "block";
+            result.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         //  RUN TEST
@@ -425,9 +447,12 @@
             const result = document.getElementById("result");
             const submitBtn = document.getElementById("submitBtn");
             const formData = getFormData();
+
+            // VALIDATE
             if (!validateForm(formData)) {
                 return;
             }
+
             clearError();
             result.style.display = "none";
             loading.style.display = "block";
@@ -446,21 +471,55 @@
                     max_hops: 1000
                 };
 
+                const response = await fetch("redirect-check.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(requestData)
+                }
+                );
 
-                //    Current third-party API
-                const apiUrl = "https://www.redirectcheck.org/api/check" +
-                    "?url=" +
-                    encodeURIComponent(requestData.url);
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error("Redirect API returned HTTP " + response.status);
+                const data = await response.json().catch(() => null);
+
+                //  REDIRECT LOOP
+                if (data && data.success === false && String(data.message || "")
+                    .toLowerCase()
+                    .includes("redirect loop detected")
+                ) {
+                    displayRedirectLoop(data, requestData);
+                    return;
                 }
-                const data = await response.json();
-                if (data.error) {
-                    throw new Error(data.error_message || "Unable to check this URL.");
+
+                // MAX HOPS
+                if (data && data.success === false && String(data.message || ""
+                )
+                    .toLowerCase()
+                    .includes("maximum redirect hops exceeded")
+                ) {
+                    displayRedirectLoop(data, requestData);
+                    return;
                 }
+
+                // OTHER HTTP ERROR
+                if (!response.ok || !data) {
+                    throw new Error(
+                        data?.message ||
+                        "Internal redirect checker returned HTTP " +
+                        response.status
+                    );
+                }
+
+                // OTHER API ERROR
+                if (data.success !== true) {
+                    throw new Error(
+                        data.message ||
+                        "Unable to check this URL."
+                    );
+                }
+
                 displayResults(data, requestData);
-
             } catch (error) {
                 console.error("Redirect Test Error:", error);
                 showError(error.message || "Unable to check this URL. Please try again.");
@@ -471,7 +530,7 @@
         }
 
 
-        // DISPLAY RESULTS
+        // NORMAL REDIRECT RESULTS
         function displayResults(data, requestData) {
             const result = document.getElementById("result");
             const list = document.getElementById("redirectList");
@@ -481,9 +540,10 @@
             const finalResult = data.final_result || {};
             const MAX_REDIRECTS = 10;
             const visibleRedirects = redirects.slice(0, MAX_REDIRECTS);
+
             list.innerHTML = "";
 
-            //  NO REDIRECT DATA
+            //    DIRECT RESPONSE
             if (visibleRedirects.length === 0) {
                 const status = Number(finalResult.status_code || 0);
                 const directUrl = data.url || requestData.mainInput || "-";
@@ -492,25 +552,19 @@
                     <div class="redirect-card">
                         <div class="redirect-header">
                             <span class="redirect-number">1.</span>
-                            <span class="status ${statusClass(status)}"> ${status || "-"}</span>
+                            <span class="status ${statusClass(status)}">${status || "-"}</span>
                         </div>
                         <div class="url-line">
                             <strong>URL:</strong><br>${makeUrlLink(directUrl)}
                         </div>
-                        <div class="duration">
-                            ${escapeHtml(getStatusText(status))}
-                        </div>
+                        <div class="duration">${escapeHtml(getStatusText(status))}</div>
                     </div>
                 `;
 
             } else {
 
-                //    REDIRECTS
-                const directUrl = data.url || requestData.mainInput || "-";
-                 list.innerHTML += `<div class="url-line">${makeUrlLink(directUrl)}</div>`;
-
+                // REDIRECT LIST
                 visibleRedirects.forEach((redirect, index) => {
-                    const from = redirect.from || redirect.url || "-";
                     const to = redirect.to || redirect.location || "-";
                     list.innerHTML += `<div class="url-line">${makeUrlLink(to)}</div>`;
                 }
@@ -521,19 +575,11 @@
             const finalUrl = finalResult.final_url || data.final_url ||
                 data.url || requestData.mainInput || "-";
             const finalStatus = Number(finalResult.status_code || 0);
-
-            // Get last redirect destination
             const lastRedirect = visibleRedirects[visibleRedirects.length - 1];
             const lastTo = lastRedirect
-                ? (
-                    lastRedirect.to ||
-                    lastRedirect.location ||
-                    lastRedirect.url ||
-                    ""
-                )
+                ? (lastRedirect.to || lastRedirect.location || lastRedirect.url || "")
                 : "";
 
-            // ADD FINAL DESTINATION
             if (finalUrl && finalUrl !== lastTo) {
                 list.innerHTML += `
                     <div class="final-card">
@@ -548,7 +594,7 @@
                 `;
             }
 
-            //  SHOW RESULT
+            // SHOW
             result.style.display = "block";
             result.scrollIntoView({ behavior: "smooth", block: "start" });
         }
